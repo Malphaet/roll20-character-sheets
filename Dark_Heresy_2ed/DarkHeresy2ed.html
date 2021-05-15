@@ -23,7 +23,11 @@
 <input type="radio" class="sheet-tab sheet-tab8" name="attr_core-tab" value="8" title="Ship" />
 <span class="sheet-tab sheet-tab8" style='line-height: 40px;'>Ship</span>
 
+<input type="checkbox" class="sheet-eltab" name="attr_core-eltab" value="9" title="GM" />
+<span class="sheet-eltab" style='line-height: 40px;'>GM</span>
+
 <br><br>
+<input type="text" class="whisper" name="attr_whisper" value="" readonly=""/>
 <!-- End Tab setup -->
 
 <div class="sheet-section-core"><!-- Core Tab -->
@@ -2516,11 +2520,17 @@
 							<div class="sheet-item" style="width: 6%;"><input name="attr_Rangedweaponclip_max" type="text" value="0" /></div>
 							<div class="sheet-item" style="width: 15%;"><label>Reload:</label></div>
 							<div class="sheet-item" style="width: 15%;"><input name="attr_Rangedweaponreload" type="text" /></div>
-							<div class="sheet-item" style="width: 16%;"><button name="roll_Rangedhit" type="roll" value="&{template:dh2ed}[[[[floor((@{BallisticSkill}?{Aim | No aim (+0),+0 | Half aim (+10),+10| Full aim (+20),+20}+ ?{Range | Point Blank (+30),+30 | Short Range (+10),+10 | Standard range (+0),+0 | Long Range (-10),-10 | Extreme Range (-30),-30}+ ?{Rate of Fire/Attack Type| Standard (+10),+10 | Semi auto (+0),+0 | Full Auto (-10),-10 | Called Shot (-20),-20 | Suppressing Fire (-20),-20}+ [[?{Modifier|0}]])/10))]]-[[floor([[1d100cs<1cf>100]]/10)]]]]{{name=@{Rangedweaponname}}}{{roll= $[[2]] }}{{degrees=$[[4]]}}{{skill=@{BallisticSkill}}}{{aim=?{Aim | No aim (+0),+0 | Half aim (+10),+10 | Full aim (+20),+20} }}{{range= ?{Range | Standard range (+0),Standard range +0 | Short Range (+10),+10 | Point Blank (+30),+30 | Long Range (-10),-10 | Extreme Range (-30),-30}}}{{attacktype=?{Rate of Fire/Attack Type| Semi auto (+0),+0 | Standard (+10),+10 | Full Auto (-10),-10 | Called Shot (-20),-20 | Suppressing Fire (-20),-20}}}{{modifier=?{Modifier|+0} }}{{target=[[@{BallisticSkill}+ [[?{Aim | No aim (+0),0 | Half aim (+10),10 | Full aim (+20),20} + ?{Range | Standard range (+0),Standard range +0 | Short Range (+10),+10 | Point Blank (+30),+30 | Long Range (-10),-10 | Extreme Range (-30),-30} + ?{Rate of Fire/Attack Type| Standard (+10),+10 | Semi auto (+0),+0 | Full Auto (-10),-10 | Called Shot (-20),-20 | Suppressing Fire (-20),-20} + [[?{Modifier|0}]]]]]]}}"> <label>Hit</label> </button></div>
+							<div class="sheet-item" style="width: 16%;"><button name="roll_Rangedhit" type="roll" value="&{template:dh2ed}[[[[floor((@{BallisticSkill}+@{Rangedweaponaccuracy}?{Aim | No aim (+0),+0 | Half aim (+10),+10| Full aim (+20),+20}+ ?{Range | Point Blank (+30),+30 | Short Range (+10),+10 | Standard range (+0),+0 | Long Range (-10),-10 | Extreme Range (-30),-30}+ ?{Rate of Fire/Attack Type| Standard (+10),+10 | Semi auto (+0),+0 | Full Auto (-10),-10 | Called Shot (-20),-20 | Suppressing Fire (-20),-20}+ [[?{Modifier|0}]])/10))]]-[[floor([[1d100cs<1cf>100]]/10)]]]]{{name=@{Rangedweaponname}}}{{roll= $[[2]] }}{{degrees=$[[4]]}}{{skill=@{BallisticSkill}}}{{aim=?{Aim | No aim (+0),+0 | Half aim (+10),+10 | Full aim (+20),+20} }}{{range= ?{Range | Standard range (+0),Standard range +0 | Short Range (+10),+10 | Point Blank (+30),+30 | Long Range (-10),-10 | Extreme Range (-30),-30}}}{{attacktype=?{Rate of Fire/Attack Type| Semi auto (+0),+0 | Standard (+10),+10 | Full Auto (-10),-10 | Called Shot (-20),-20 | Suppressing Fire (-20),-20}}}{{modifier=?{Modifier|+0}}}{{target=[[@{BallisticSkill}+@{Rangedweaponaccuracy}+[[?{Aim | No aim (+0),0 | Half aim (+10),10 | Full aim (+20),20} + ?{Range | Standard range (+0),Standard range +0 | Short Range (+10),+10 | Point Blank (+30),+30 | Long Range (-10),-10 | Extreme Range (-30),-30} + ?{Rate of Fire/Attack Type| Standard (+10),+10 | Semi auto (+0),+0 | Full Auto (-10),-10 | Called Shot (-20),-20 | Suppressing Fire (-20),-20} + [[?{Modifier|0}]]]]]]}}"> <label>Hit</label> </button></div>
 						</div>
 						<div class="sheet-row">
 							<div class="sheet-item" style="width: 15%;"><label>Special:</label></div>
-							<div class="sheet-item" style="width: 69%;"><input name="attr_Rangedweaponspecial" type="text" /></div>
+							<div class="sheet-item" style="width: 60%;"><input name="attr_Rangedweaponspecial" type="text" /></div>
+							<div class="sheet-item" style="width: 15%;"><label>Accuracy:</label></div>
+							<div class="sheet-item" style="width: 10%;"><input name="attr_Rangedweaponaccuracy" type="text" value="0"/></div>
+						</div>
+						<div class="sheet-row">
+							<div class="sheet-item" style="width: 15%;"><label>Notes:</label></div>
+							<div class="sheet-item" style="width: 70%;"><input name="attr_Rangedweaponnotes" type="text" /></div>
 							<div class="sheet-item" style="width: 16%;"><button name="roll_Rangeddamage" type="roll" value="&{template:dh2ed-dmg}{{name=@{Rangedweaponname}}}{{damage=[[@{Rangedweapondamage}]]}}{{damagetype=@{Rangedweapontype}}}{{special=@{Rangedweaponspecial}}}{{penetration= @{Rangedweaponpen}}}"> <label>Damage</label> </button></div>
 						</div>
 					</div>
@@ -2542,11 +2552,17 @@
 							<div class="sheet-item" style="width: 18%;"><input name="attr_meleeweapontype" type="text" /></div>
 							<div class="sheet-item" style="width: 10%;"><label>Pen:</label></div>
 							<div class="sheet-item" style="width: 10%;"><input name="attr_meleeweaponpen" type="text" value="0" /></div>
-							<div class="sheet-item" style="width: 16%;"><button name="roll_meleehit" type="roll" value="&{template:dh2ed}[[[[floor((@{WeaponSkill}+ ?{Aim | No aim (+0),+0 | Half aim (+10),+10 | Full aim (+20),+20} + ?{Attack Type | All out (+30),+30| Charge (+20),+20 |Standard (+10),+10 | Swift Attack (+0),+0 | Lighting (-10),-10} + [[?{Modifier|+0}]])/10))]]-[[floor([[1d100cs<1cf>100]]/10)]]]] {{name=@{meleeweaponname}}}{{roll= $[[2]] }}{{degrees=$[[4]]}}{{skill=@{WeaponSkill}}}{{aim=?{Aim | No aim (+0),+0 | Half aim (+10),+10 | Full aim (+20),+20} }}{{attacktype= ?{Attack Type | All out (+30),+30 Allout| Charge (+20),+20 |Standard (+10),+10 | Swift Attack (+0),0 | Lighting (-10),-10}}} {{modifier=?{Modifier|+0} }} {{target=[[@{WeaponSkill}+ [[?{Aim | No aim (+0),0 | Half aim (+10),10 | Full aim (+20),20} + ?{Attack Type | All out (+30),30| Charge (+20),20 |Standard (+10),10 | Swift Attack (+0),0 | Lighting (-10),-10} + [[?{Modifier|0}]]]]]]}}"> <label>Hit</label> </button></div>
+							<div class="sheet-item" style="width: 16%;"><button name="roll_meleehit" type="roll" value="&{template:dh2ed}[[[[floor((@{WeaponSkill}+@{meleeweaponaccuracy}+ ?{Aim | No aim (+0),+0 | Half aim (+10),+10 | Full aim (+20),+20} + ?{Attack Type | All out (+30),+30| Charge (+20),+20 |Standard (+10),+10 | Swift Attack (+0),+0 | Lighting (-10),-10} + [[?{Modifier|+0}]])/10))]]-[[floor([[1d100cs<1cf>100]]/10)]]]] {{name=@{meleeweaponname}}}{{roll= $[[2]] }}{{degrees=$[[4]]}}{{skill=@{WeaponSkill}}}{{aim=?{Aim | No aim (+0),+0 | Half aim (+10),+10 | Full aim (+20),+20} }}{{attacktype= ?{Attack Type | All out (+30),+30 Allout| Charge (+20),+20 |Standard (+10),+10 | Swift Attack (+0),0 | Lighting (-10),-10}}} {{modifier=?{Modifier|+0} }} {{target=[[@{WeaponSkill}+@{meleeweaponaccuracy}+ [[?{Aim | No aim (+0),0 | Half aim (+10),10 | Full aim (+20),20} + ?{Attack Type | All out (+30),30| Charge (+20),20 |Standard (+10),10 | Swift Attack (+0),0 | Lighting (-10),-10} + [[?{Modifier|0}]]]]]]}}"> <label>Hit</label> </button></div>
 						</div>
 							<div class="sheet-row">
 							<div class="sheet-item" style="width: 15%;"><label>Special:</label></div>
-							<div class="sheet-item" style="width: 69%;"><input name="attr_meleeweaponspecial" type="text" /> </div>
+							<div class="sheet-item" style="width: 60%;"><input name="attr_meleeweaponspecial" type="text" /> </div>
+							<div class="sheet-item" style="width: 15%;"><label>Accuracy:</label></div>
+							<div class="sheet-item" style="width: 10%;"><input name="attr_meleeweaponaccuracy" type="text" value="0"/></div>
+						</div>
+						<div class="sheet-row">
+							<div class="sheet-item" style="width: 15%;"><label>Notes:</label></div>
+							<div class="sheet-item" style="width: 70%;"><input name="attr_meleeweaponnotes" type="text" /></div>
 							<div class="sheet-item" style="width: 16%;"><button name="roll_meleedamage" type="roll" value="&{template:dh2ed-dmg}{{name=@{meleeweaponname}}}{{damage=[[@{meleeweapondamage}+@{UnS}+floor(@{strength}/10)]]}}{{damagetype=@{meleeweapontype}}}{{special=@{meleeweaponspecial}}}{{penetration= @{meleeweaponpen}}}"> <label>Damage</label> </button></div>
 						</div>
 					</div>
@@ -3837,5 +3853,13 @@ on('change:repeating_ShipEssentialComponents',function(){
 });
 on('change:repeating_ShipSupplementalComponents',function(){
     TAS.repeatingSimpleSum('ShipSupplementalComponents','ShipSupplementalComponentSpace','ShipSupplementalComponentsSpaceTotal');
+});
+on("change:core-eltab", function() {
+    // Check the current value of the hidden attribute.*
+    getAttrs(["whisper"], function(v) {
+      setAttrs({
+        "whisper": v["whisper"] !== "" ? "" : "/w gm"
+      });
+    });
 });
 </script>
